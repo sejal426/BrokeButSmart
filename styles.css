@@ -257,3 +257,85 @@ body::before { content:''; position:fixed; inset:0; background:radial-gradient(e
 /* Sign-out button in top bar */
 .signout-btn { background:transparent; border:1px solid var(--border2); color:var(--text2); font-family:var(--sans); font-weight:700; font-size:.72rem; padding:5px 11px; border-radius:6px; cursor:pointer; transition:all .18s; white-space:nowrap; }
 .signout-btn:hover { border-color:var(--red); color:var(--red); }
+
+/* ─── V0.DEV SHADCN INTEGRATION LAYER ─────────────────────────────────────── */
+/* These variables map v0/shadcn design tokens onto BrokeButSmart's theme */
+
+:root {
+  /* shadcn/ui compatible tokens */
+  --background: #080c0f;
+  --foreground: #e8f4f0;
+  --card-bg: #131d26;
+  --card-foreground: #e8f4f0;
+  --primary-color: #00ff88;
+  --primary-foreground: #000000;
+  --secondary-color: #111820;
+  --secondary-foreground: #e8f4f0;
+  --muted-color: #111820;
+  --muted-foreground: #8aacbf;
+  --accent-color: #00ff88;
+  --accent-foreground: #000000;
+  --destructive-color: #ff4d6a;
+  --destructive-foreground: #ffffff;
+  --border-color: #1e3040;
+  --input-color: #0d1318;
+  --ring-color: #00ff88;
+  --radius-size: 0.625rem;
+}
+
+/* shadcn Card style */
+.v0-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.v0-card:hover { border-color: rgba(0,255,136,.35); }
+.v0-card-neon  { box-shadow: 0 0 0 1px rgba(0,255,136,.25), 0 4px 24px rgba(0,255,136,.12); }
+
+/* shadcn Badge */
+.v0-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  border-radius: 6px; padding: 2px 10px;
+  font-family: var(--mono); font-size: .72rem; font-weight: 700;
+  border: 1px solid transparent;
+}
+.v0-badge-green  { background: rgba(0,255,136,.12);  color: var(--neon);  border-color: rgba(0,255,136,.25); }
+.v0-badge-red    { background: rgba(255,77,106,.12); color: var(--red);   border-color: rgba(255,77,106,.25); }
+.v0-badge-blue   { background: rgba(56,182,255,.12); color: var(--blue);  border-color: rgba(56,182,255,.25); }
+.v0-badge-gold   { background: rgba(255,209,102,.12); color: var(--gold); border-color: rgba(255,209,102,.25); }
+.v0-badge-muted  { background: var(--bg3); color: var(--text3); border-color: var(--border); }
+
+/* shadcn Button variants */
+.v0-btn         { display:inline-flex; align-items:center; justify-content:center; gap:6px; border-radius:8px; font-family:var(--sans); font-weight:700; cursor:pointer; transition:all .18s; padding:8px 16px; font-size:.82rem; border:none; }
+.v0-btn-primary { background:var(--neon); color:#000; }
+.v0-btn-primary:hover { background:#00ffaa; box-shadow:0 0 20px rgba(0,255,136,.35); transform:translateY(-1px); }
+.v0-btn-outline { background:transparent; border:1px solid var(--border2); color:var(--text); }
+.v0-btn-outline:hover { border-color:var(--neon); color:var(--neon); }
+.v0-btn-ghost   { background:transparent; color:var(--text2); }
+.v0-btn-ghost:hover { background:var(--bg3); color:var(--text); }
+.v0-btn-sm { padding:5px 11px; font-size:.75rem; }
+.v0-btn-lg { padding:12px 26px; font-size:.95rem; }
+
+/* shadcn Progress */
+.v0-progress { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+.v0-progress-fill { height:100%; background:linear-gradient(90deg,var(--neon),var(--blue)); border-radius:3px; transition:width .8s ease; }
+
+/* shadcn Table */
+.v0-table { width:100%; border-collapse:collapse; }
+.v0-table th { text-align:left; font-family:var(--mono); font-size:.62rem; text-transform:uppercase; letter-spacing:.08em; color:var(--neon); padding:9px 12px; border-bottom:1px solid var(--border); font-weight:700; }
+.v0-table td { padding:12px 12px; font-family:var(--mono); font-size:.8rem; border-bottom:1px solid rgba(30,48,64,.5); vertical-align:middle; }
+.v0-table tr:last-child td { border-bottom:none; }
+.v0-table tr:hover td { background:rgba(0,255,136,.03); cursor:pointer; }
+
+/* shadcn Avatar */
+.v0-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--neon),#00aaff); display:flex; align-items:center; justify-content:center; font-size:.82rem; font-weight:700; color:#000; border:2px solid rgba(0,255,136,.4); }
+
+/* Ticker scroll animation (v0 style) */
+.v0-ticker-scroll { display:flex; animation:ticker 35s linear infinite; width:max-content; }
+.v0-ticker-item   { display:flex; align-items:center; gap:10px; padding:0 22px; white-space:nowrap; border-right:1px solid var(--border); font-family:var(--mono); font-size:.72rem; }
+
+/* neon glow utility (used by v0 components) */
+.neon-glow { box-shadow: 0 0 0 1px rgba(0,255,136,.2), 0 4px 24px rgba(0,255,136,.1); }
+.neon-text  { color: var(--neon); }

@@ -273,7 +273,7 @@ function Onboarding({ onComplete }) {
             <div><label className="inp-label">Your Name</label><input className="inp" placeholder="e.g. Rahul Sharma" value={name} onChange={e=>setName(e.target.value)}/></div>
             <div><label className="inp-label">Username</label><input className="inp" placeholder="e.g. rahulbuyslow" value={handle} onChange={e=>setHandle(e.target.value)}/></div>
             {err && <p style={{color:'var(--red)',fontSize:'.78rem'}}>{err}</p>}
-            <button className="btn btn-primary btn-lg" style={{marginTop:'6px'}} onClick={next}>Let's Go →</button>
+            <button className="v0-btn v0-btn-primary v0-btn-lg" style={{marginTop:'6px'}} onClick={next}>Let's Go →</button>
           </div>
         )}
 
@@ -291,7 +291,7 @@ function Onboarding({ onComplete }) {
             <div className="pick-chips">
               {[1000,5000,10000,25000,40000,50000].map(v=><button key={v} className={`pick-chip ${money===v?'sel':''}`} onClick={()=>setMoney(v)}>₹{v.toLocaleString('en-IN')}</button>)}
             </div>
-            <button className="btn btn-primary btn-lg" onClick={next}>Choose This →</button>
+            <button className="v0-btn v0-btn-primary v0-btn-lg" onClick={next}>Choose This →</button>
           </div>
         )}
 
@@ -301,7 +301,7 @@ function Onboarding({ onComplete }) {
             <div className="pick-chips">
               {GOALS.map(g=><button key={g} className={`pick-chip ${goals.includes(g)?'sel':''}`} onClick={()=>toggle(g)}>{g}</button>)}
             </div>
-            <button className="btn btn-primary btn-lg" onClick={finish} style={{marginTop:'4px'}}>Start Learning 🚀</button>
+            <button className="v0-btn v0-btn-primary v0-btn-lg" onClick={finish} style={{marginTop:'4px'}}>Start Learning 🚀</button>
           </div>
         )}
       </div>
@@ -340,9 +340,9 @@ function TradeModal({ asset, prices, user, onTrade, onClose }) {
         <div style={{marginBottom:'14px'}}>
           <label className="inp-label">Shares ({mode==='buy'?`Max: ${maxBuy}`:`Owned: ${owned}`})</label>
           <div style={{display:'flex',alignItems:'center',gap:'7px',marginTop:'5px'}}>
-            <button className="btn btn-outline btn-sm" onClick={()=>setQty(q=>Math.max(1,q-1))}>−</button>
+            <button className="v0-btn v0-btn-outline v0-btn-sm" onClick={()=>setQty(q=>Math.max(1,q-1))}>−</button>
             <input className="inp" type="number" min="1" max={mode==='buy'?maxBuy:owned} value={qty} onChange={e=>setQty(Math.max(1,Number(e.target.value)))} style={{textAlign:'center'}}/>
-            <button className="btn btn-outline btn-sm" onClick={()=>setQty(q=>Math.min(mode==='buy'?maxBuy:owned,q+1))}>+</button>
+            <button className="v0-btn v0-btn-outline v0-btn-sm" onClick={()=>setQty(q=>Math.min(mode==='buy'?maxBuy:owned,q+1))}>+</button>
           </div>
           <input type="range" className="inp-range" style={{marginTop:'9px'}} min="1" max={Math.max(1,mode==='buy'?maxBuy:owned)} value={qty} onChange={e=>setQty(Number(e.target.value))}/>
         </div>
@@ -374,7 +374,7 @@ function LessonModal({ lesson, done, onComplete, onClose }) {
       <div className="modal" style={{maxWidth:560}}>
         <div className="modal-ttl">{lesson.icon} {lesson.title}<button className="modal-close" onClick={onClose}>✕</button></div>
         <div className="lm-body" dangerouslySetInnerHTML={{__html:lesson.content}}/>
-        <button className="btn btn-primary btn-lg" style={{width:'100%',marginTop:'16px'}} disabled={done} onClick={onComplete}>
+        <button className="v0-btn v0-btn-primary v0-btn-lg" style={{width:'100%',marginTop:'16px'}} disabled={done} onClick={onComplete}>
           {done ? '✅ Already Completed!' : `✅ Mark Complete & Earn +${lesson.xp} XP`}
         </button>
       </div>
@@ -396,7 +396,7 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'16px'}}>
       {/* Hero */}
-      <div className="card fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.05),rgba(56,182,255,.03))'}}>
+      <div className="v0-card v0-card-neon fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.05),rgba(56,182,255,.03))'}}>
         <div style={{display:'flex',justifyContent:'space-between',flexWrap:'wrap',gap:'12px'}}>
           <div>
             <div className="balance-lbl">Total Portfolio Value</div>
@@ -425,7 +425,7 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
           {lbl:'XP Earned',     val:`${user.xp} XP`, sub:`Level ${user.level}`, col:'var(--gold)'},
           {lbl:'Lessons Done',  val:`${user.completedLessons.length}/${LESSONS.length}`, sub:'Completed', col:'var(--orange)'},
         ].map(s=>(
-          <div key={s.lbl} className="card-sm">
+          <div key={s.lbl} className="v0-card">
             <div className="card-title">{s.lbl}</div>
             <div className="card-val" style={{color:s.col,fontSize:'1.4rem'}}>{s.val}</div>
             <div className="card-sub">{s.sub}</div>
@@ -435,7 +435,7 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
 
       <div className="grid-2 fu2">
         {/* Quick Actions */}
-        <div className="card">
+        <div className="v0-card">
           <div className="section-hdr"><div className="section-ttl">⚡ Quick Actions</div></div>
           <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
             {[
@@ -444,7 +444,7 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
               {icon:'🎓',lbl:'Read a lesson',tab:'learn'},
               {icon:'💼',lbl:'View portfolio',tab:'portfolio'},
             ].map(a=>(
-              <button key={a.tab} className="btn btn-outline" style={{justifyContent:'flex-start',gap:'10px'}} onClick={()=>setTab(a.tab)}>
+              <button key={a.tab} className="v0-btn v0-btn-outline" style={{justifyContent:'flex-start',gap:'10px'}} onClick={()=>setTab(a.tab)}>
                 <span>{a.icon}</span><span>{a.lbl}</span>
               </button>
             ))}
@@ -453,7 +453,7 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
         </div>
 
         {/* Recent activity */}
-        <div className="card">
+        <div className="v0-card">
           <div className="section-hdr"><div className="section-ttl">🕐 Recent Activity</div></div>
           {recentTx.length===0
             ? <div className="empty-state">No transactions yet.<br/>Go buy some stocks! 📈</div>
@@ -471,8 +471,8 @@ function Dashboard({ user, prices, portfolioValue, totalValue, pnl, pnlPct, spar
       </div>
 
       {/* Market snapshot */}
-      <div className="card fu3">
-        <div className="section-hdr"><div className="section-ttl">🇮🇳 Market Snapshot</div><button className="btn btn-outline btn-sm" onClick={()=>setTab('market')}>Full Market →</button></div>
+      <div className="v0-card fu3">
+        <div className="section-hdr"><div className="section-ttl">🇮🇳 Market Snapshot</div><button className="v0-btn v0-btn-outline v0-btn-sm" onClick={()=>setTab('market')}>Full Market →</button></div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(120px,1fr))',gap:'8px'}}>
           {ALL_ASSETS.slice(0,8).map(a=>{
             const p=prices[a.id]||a.price, pp=a.price;
@@ -501,7 +501,7 @@ function Market({ user, prices, prevPrices, sparklines, onTrade }) {
 
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
-      <div className="card fu" style={{padding:'14px 18px'}}>
+      <div className="v0-card fu" style={{padding:'14px 18px'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'10px'}}>
           <div>
             <div style={{fontSize:'1.05rem',fontWeight:700}}>🇮🇳 NSE / BSE Market</div>
@@ -517,8 +517,8 @@ function Market({ user, prices, prevPrices, sparklines, onTrade }) {
         </div>
       </div>
 
-      <div className="card fu1" style={{padding:0,overflow:'hidden'}}>
-        <table className="tbl">
+      <div className="v0-card fu1" style={{padding:0,overflow:'hidden',border:'1px solid rgba(0,255,136,.2))'}}>
+        <table className="v0-table">
           <thead>
             <tr>
               <th>Stock</th>
@@ -568,7 +568,7 @@ function Portfolio({ user, prices, portfolioValue, totalValue, pnl, pnlPct }) {
 
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
-      <div className="card fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.04),rgba(56,182,255,.03))'}}>
+      <div className="v0-card fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.04),rgba(56,182,255,.03))'}}>
         <div style={{display:'flex',justifyContent:'space-between',flexWrap:'wrap',gap:'12px',alignItems:'flex-start'}}>
           <div>
             <div className="balance-lbl">Portfolio Net Worth</div>
@@ -578,11 +578,11 @@ function Portfolio({ user, prices, portfolioValue, totalValue, pnl, pnlPct }) {
             </div>
           </div>
           <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
-            <div className="card-sm" style={{minWidth:100,padding:'10px 14px'}}>
+            <div className="v0-card" style={{minWidth:100,padding:'10px 14px'}}>
               <div className="card-title">Cash</div>
               <div style={{fontFamily:'var(--mono)',fontWeight:700,fontSize:'1rem',color:'var(--neon)'}}>{inrS(user.cash)}</div>
             </div>
-            <div className="card-sm" style={{minWidth:100,padding:'10px 14px'}}>
+            <div className="v0-card" style={{minWidth:100,padding:'10px 14px'}}>
               <div className="card-title">Invested</div>
               <div style={{fontFamily:'var(--mono)',fontWeight:700,fontSize:'1rem',color:'var(--blue)'}}>{inrS(portfolioValue)}</div>
             </div>
@@ -590,7 +590,7 @@ function Portfolio({ user, prices, portfolioValue, totalValue, pnl, pnlPct }) {
         </div>
       </div>
 
-      <div className="card fu1">
+      <div className="v0-card fu1">
         <div className="section-hdr"><div className="section-ttl">💼 Holdings ({holdings.length})</div></div>
         {holdings.length===0
           ? <div className="empty-state">No holdings yet.<br/>Head to the Market tab to buy your first share!</div>
@@ -622,7 +622,7 @@ function Portfolio({ user, prices, portfolioValue, totalValue, pnl, pnlPct }) {
       </div>
 
       {user.transactions.length>0 && (
-        <div className="card fu2">
+        <div className="v0-card fu2">
           <div className="section-hdr"><div className="section-ttl">🧾 Transaction History</div></div>
           {user.transactions.slice(0,15).map(tx=>(
             <div key={tx.id} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'8px 0',borderBottom:'1px solid var(--border)'}}>
@@ -679,7 +679,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
 
       {tab==='score' && (
         <div style={{display:'flex',flexDirection:'column',gap:'14px'}} className="fu">
-          <div className="card">
+          <div className="v0-card">
             <div style={{display:'flex',alignItems:'center',gap:'24px',flexWrap:'wrap'}}>
               <div className="ring-wrap" style={{flexShrink:0}}>
                 <svg width="130" height="130" viewBox="0 0 130 130">
@@ -711,7 +711,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
             </div>
           </div>
 
-          <div className="card">
+          <div className="v0-card">
             <div className="section-hdr"><div className="section-ttl">🎯 Simulate Credit Events</div></div>
             <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
               {[
@@ -724,7 +724,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
                     <div style={{fontSize:'.84rem',fontWeight:600}}>{c.icon} {c.title}</div>
                     <div style={{fontSize:'.7rem',color:'var(--text2)'}}>{c.sub}</div>
                   </div>
-                  <button className="btn btn-outline btn-sm" onClick={c.fn}>Simulate</button>
+                  <button className="v0-btn v0-btn-outline v0-btn-sm" onClick={c.fn}>Simulate</button>
                 </div>
               ))}
             </div>
@@ -734,7 +734,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
 
       {tab==='loans' && (
         <div style={{display:'flex',flexDirection:'column',gap:'10px'}} className="fu">
-          <div className="card" style={{background:'rgba(56,182,255,.04)'}}>
+          <div className="v0-card" style={{background:'rgba(56,182,255,.04)'}}>
             <p style={{fontSize:'.84rem',color:'var(--text2)',lineHeight:'1.65'}}>Take a loan to practice repayment. Notice how higher APR loans cost much more over time. <span style={{color:'var(--gold)'}}>⚠ Never use predatory loan apps in real life!</span></p>
           </div>
           {LOAN_OPTIONS.map(l=>(
@@ -747,7 +747,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
                   {l.interest>100 && <span className="badge-r">⚠ PREDATORY</span>}
                 </div>
               </div>
-              <button className="btn btn-outline btn-sm" onClick={()=>takeLoan(l.amount,l.name,l.interest)}>Take Loan</button>
+              <button className="v0-btn v0-btn-outline v0-btn-sm" onClick={()=>takeLoan(l.amount,l.name,l.interest)}>Take Loan</button>
             </div>
           ))}
         </div>
@@ -790,7 +790,7 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
               })
           }
           {user.debtCards.length>0 && (
-            <div className="card" style={{background:'var(--bg2)',fontSize:'.8rem',color:'var(--text2)'}}>
+            <div className="v0-card" style={{background:'var(--bg2)',fontSize:'.8rem',color:'var(--text2)'}}>
               <span style={{color:'var(--gold)'}}>💡 Strategy: </span>
               The <strong style={{color:'var(--text)'}}>Avalanche Method</strong> — pay minimum on all debts, then throw everything extra at the highest-APR debt first. Saves maximum interest in real life.
             </div>
@@ -800,13 +800,13 @@ function CreditModule({ user, takeLoan, makePayment, showToast }) {
 
       {tab==='emi' && (
         <div style={{display:'flex',flexDirection:'column',gap:'14px'}} className="fu">
-          <div className="card">
+          <div className="v0-card">
             <div className="section-hdr"><div className="section-ttl">🧮 EMI Calculator</div></div>
             <div style={{display:'flex',flexDirection:'column',gap:'12px'}}>
               <div><label className="inp-label">Loan Amount (₹)</label><input className="inp" type="number" placeholder="e.g. 50000" value={emiP} onChange={e=>setEmiP(e.target.value)}/></div>
               <div><label className="inp-label">Annual Interest Rate (%)</label><input className="inp" type="number" placeholder="e.g. 12" value={emiR} onChange={e=>setEmiR(e.target.value)}/></div>
               <div><label className="inp-label">Tenure (months)</label><input className="inp" type="number" placeholder="e.g. 24" value={emiN} onChange={e=>setEmiN(e.target.value)}/></div>
-              <button className="btn btn-primary" onClick={calcEMI}>Calculate EMI →</button>
+              <button className="v0-btn v0-btn-primary" onClick={calcEMI}>Calculate EMI →</button>
             </div>
             {emiRes && (
               <div style={{background:'var(--bg2)',borderRadius:'10px',padding:'16px',marginTop:'14px',textAlign:'center',animation:'fadeUp .3s ease'}}>
@@ -831,7 +831,7 @@ function Learn({ user, onOpen }) {
   const earnedXp = LESSONS.filter(l=>user.completedLessons.includes(l.id)).reduce((s,l)=>s+l.xp,0);
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
-      <div className="card fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.05),rgba(56,182,255,.03))'}}>
+      <div className="v0-card v0-card-neon fu" style={{background:'linear-gradient(135deg,rgba(0,255,136,.05),rgba(56,182,255,.03))'}}>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'10px'}}>
           <div>
             <h2 style={{fontSize:'1.05rem',fontWeight:800,marginBottom:'3px'}}>🎓 Financial Literacy</h2>
@@ -857,7 +857,7 @@ function Learn({ user, onOpen }) {
         {LESSONS.map((l,i)=>{
           const done = user.completedLessons.includes(l.id);
           return (
-            <div key={l.id} className={`lcard fu${Math.min(i+1,5)} ${done?'done':''}`} onClick={()=>onOpen(l)}>
+            <div key={l.id} className={`v0-card fu${Math.min(i+1,5)} ${done?'done':''}`} onClick={()=>onOpen(l)}>
               <div className="lc-top">
                 <span className="lc-ico">{l.icon}</span>
                 <div><div className="lc-ttl">{l.title}</div><div className="lc-sub">{l.sub}</div></div>
@@ -875,7 +875,7 @@ function Learn({ user, onOpen }) {
         })}
       </div>
 
-      <div className="card" style={{background:'var(--bg2)',fontSize:'.8rem',color:'var(--text2)',textAlign:'center'}}>
+      <div className="v0-card" style={{background:'var(--bg2)',fontSize:'.8rem',color:'var(--text2)',textAlign:'center'}}>
         <p>💬 <strong style={{color:'var(--text)'}}>Remember:</strong> The goal isn't to get rich quick — it's to understand how money works so it can work <em>for</em> you. Every rupee you learn to manage here builds a skill that transfers directly to real life.</p>
       </div>
     </div>
@@ -1105,7 +1105,7 @@ function AuthScreen({ onAuth }) {
           {err && <div className="auth-err">⚠ {err}</div>}
           {ok  && <div className="auth-ok">{ok}</div>}
 
-          <button className="btn btn-primary btn-lg" onClick={submit} disabled={loading}>
+          <button className="v0-btn v0-btn-primary v0-btn-lg" onClick={submit} disabled={loading}>
             {loading ? '⏳ Please wait…' : mode === 'login' ? 'Log In →' : 'Create Account →'}
           </button>
 
@@ -1140,14 +1140,22 @@ function App() {
   // ── Step 1: On page load, check if a Supabase session already exists
   // (this handles users who refreshed the page — they stay logged in)
   useEffect(() => {
+    // Safety timeout: if Supabase doesn't respond in 4s, fall back to login screen
+    const timeout = setTimeout(() => setAuthUser(null), 4000);
+
     sb.auth.getSession().then(({ data: { session } }) => {
+      clearTimeout(timeout);
       setAuthUser(session?.user ?? null);
+    }).catch(() => {
+      clearTimeout(timeout);
+      setAuthUser(null);
     });
+
     // Also listen for login / logout events (e.g. after signUp confirmation)
     const { data: { subscription } } = sb.auth.onAuthStateChange((_event, session) => {
       setAuthUser(session?.user ?? null);
     });
-    return () => subscription.unsubscribe();
+    return () => { subscription.unsubscribe(); clearTimeout(timeout); };
   }, []);
 
   // ── Step 2: Once we know who is logged in, load their game profile from DB
@@ -1325,9 +1333,9 @@ const pnlPct     = user && typeof user === 'object' ? pct(user.startMoney,totalV
 
   // ── Render: loading spinner while session check runs
   if (authUser === undefined) return (
-    <div className="auth-loading">
+    <div className="auth-loading" style={{background:'#080c0f',height:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'14px'}}>
       <div className="spinner"/>
-      <span>Loading BrokeButSmart…</span>
+      <span style={{fontFamily:'monospace',color:'#00ff88',fontSize:'.85rem'}}>Loading BrokeButSmart…</span>
     </div>
   );
 
@@ -1386,50 +1394,66 @@ if (user === 'onboarding') return (
 
   return (
     <div className="app-shell">
-      {/* TOP BAR */}
-      <div className="top-bar">
-        <div className="logo">
-          <div className="logo-dot"/>
-          <span>Broke<span style={{color:'var(--neon)'}}>But</span><span style={{color:'var(--gold)'}}>Smart</span></span>
+
+      {/* ── TOP BAR (v0.dev shadcn/ui Navbar) ── */}
+      <header className="top-bar" style={{flexDirection:'column',alignItems:'stretch',gap:0,padding:0}}>
+        {/* Row 1: logo + user controls */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'10px 20px',borderBottom:'1px solid var(--border)'}}>
+          {/* Logo — tricolor BrokeButSmart */}
+          <div className="logo">
+            <div className="logo-dot"/>
+            <span style={{fontFamily:'var(--sans)',fontWeight:800,fontSize:'1.15rem'}}>
+              <span style={{color:'var(--text)'}}>Broke</span><span style={{color:'var(--neon)'}}>But</span><span style={{color:'var(--gold)'}}>Smart</span>
+            </span>
+          </div>
+          {/* Right side: account switcher + avatar chip + sign out */}
+          <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+            <AccountSwitcher
+              user={user}
+              totalValue={totalValue}
+              getAllAccounts={getAllAccounts}
+              onSwitch={switchToAccount}
+              onNew={addNewAccount}
+              onReset={deleteAccount}
+            />
+            <div className="v0-avatar" title={user.name}>{(user.name||'U')[0].toUpperCase()}</div>
+            <button className="signout-btn" onClick={signOut} title="Sign out">⏻ Sign Out</button>
+          </div>
         </div>
-        <nav className="nav">
+        {/* Row 2: Nav tabs (shadcn Tabs style) */}
+        <nav style={{display:'flex',gap:'3px',padding:'8px 16px',background:'var(--bg2)'}}>
           {TABS.map(t=>(
-            <button key={t.id} className={`nav-btn ${tab===t.id?'active':''}`} onClick={()=>setTab(t.id)}>
+            <button
+              key={t.id}
+              onClick={()=>setTab(t.id)}
+              className={`nav-btn ${tab===t.id?'active':''}`}
+              style={tab===t.id ? {background:'var(--neon-dim)',color:'var(--neon)',borderRadius:'8px',boxShadow:'0 0 12px rgba(0,255,136,.2)'} : {}}
+            >
               <span>{t.icon}</span> <span className="lbl">{t.label}</span>
             </button>
           ))}
         </nav>
-        <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-          <AccountSwitcher
-  user={user}
-  totalValue={totalValue}
-  getAllAccounts={getAllAccounts}
-  onSwitch={switchToAccount}
-  onNew={addNewAccount}
-  onReset={deleteAccount}
-/>
-          {/* Sign out button */}
-          <button className="signout-btn" onClick={signOut} title="Sign out">⏻ Sign Out</button>
-        </div>
-      </div>
+      </header>
 
-      {/* TICKER */}
-      <div className="ticker-wrap">
+      {/* ── TICKER (v0.dev Ticker component) ── */}
+      <div className="ticker-wrap" style={{borderBottom:'1px solid var(--border)',background:'rgba(13,19,24,.8)',backdropFilter:'blur(8px)'}}>
         <div className="ticker-inner">
           {[...ALL_ASSETS,...ALL_ASSETS].map((a,i)=>{
             const p=prices[a.id]||a.price, up=p>=a.price, chg=pct(a.price,p);
             return (
               <div key={i} className="ticker-item">
-                <span className="sym">{a.id}</span>
-                <span style={{color:'var(--text)',fontWeight:700}}>₹{p.toLocaleString('en-IN',{minimumFractionDigits:0})}</span>
-                <span className={up?'up':'down'}>{up?'▲':'▼'}{Math.abs(chg)}%</span>
+                <span style={{color:'var(--neon)',fontWeight:700,fontSize:'.72rem'}}>{a.id}</span>
+                <span style={{color:'var(--text)',fontWeight:700,fontFamily:'var(--mono)'}}>₹{p.toLocaleString('en-IN',{minimumFractionDigits:0})}</span>
+                <span className={`v0-badge ${up?'v0-badge-green':'v0-badge-red'}`} style={{padding:'1px 7px',fontSize:'.65rem'}}>
+                  {up?'▲':'▼'}{Math.abs(chg)}%
+                </span>
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* CONTENT */}
+      {/* ── MAIN CONTENT (v0.dev page layout) ── */}
       <div className="content-wrap">
         <div className="tab-panel" key={tab}>
           {tab==='dashboard' && <Dashboard user={user} prices={prices} portfolioValue={portfolioValue} totalValue={totalValue} pnl={pnl} pnlPct={pnlPct} sparklines={sparklines} setTab={setTab} resetAccount={resetAccount}/>}
@@ -1440,15 +1464,21 @@ if (user === 'onboarding') return (
         </div>
       </div>
 
-      {/* XP FOOTER */}
-      <div className="xp-footer">
-        <span className="level-badge">Lv.{user.level}</span>
-        <div className="xp-track"><div className="xp-fill" style={{width:`${xpPct}%`}}/></div>
+      {/* ── XP FOOTER (v0.dev XPFooter component) ── */}
+      <footer className="xp-footer" style={{backdropFilter:'blur(12px)',background:'rgba(8,12,15,.92)'}}>
+        <div className="v0-badge v0-badge-green" style={{padding:'3px 10px',fontSize:'.7rem'}}>Lv.{user.level}</div>
+        <div className="xp-track" style={{flex:1}}>
+          <div className="xp-fill" style={{width:`${xpPct}%`}}/>
+        </div>
         <span style={{fontFamily:'var(--mono)',fontSize:'.68rem',color:'var(--text3)',whiteSpace:'nowrap'}}>{xpToNext} XP to next</span>
         <span style={{fontFamily:'var(--mono)',fontSize:'.7rem',color:'var(--gold)',whiteSpace:'nowrap'}}>✨ {user.xp} XP</span>
-      </div>
+        <a href="https://v0.dev" target="_blank" rel="noopener" style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:'5px',textDecoration:'none',opacity:.55,transition:'opacity .2s'}} onMouseEnter={e=>e.currentTarget.style.opacity=1} onMouseLeave={e=>e.currentTarget.style.opacity=.55}>
+          <span style={{fontFamily:'var(--mono)',fontSize:'.6rem',color:'var(--text3)',letterSpacing:'.05em'}}>UI built with</span>
+          <span style={{fontFamily:'var(--sans)',fontSize:'.68rem',fontWeight:800,color:'var(--neon)',letterSpacing:'.03em'}}>v0.dev</span>
+        </a>
+      </footer>
 
-      {/* MODALS */}
+      {/* ── MODALS ── */}
       {tradeAsset   && <TradeModal asset={tradeAsset} prices={prices} user={user} onTrade={handleTrade} onClose={()=>setTradeAsset(null)}/>}
       {activeLesson && <LessonModal lesson={activeLesson} done={user.completedLessons.includes(activeLesson.id)} onComplete={()=>completeLesson(activeLesson)} onClose={()=>setActiveLesson(null)}/>}
       {toast        && <Toast key={toast.id} msg={toast.msg} type={toast.type} onClose={()=>setToast(null)}/>}
